@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSV Header ➜ metadata.json</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  body{font-family:Arial,sans-serif;margin:2rem;max-width:800px}
+  textarea{width:100%;min-height:6rem;font-family:monospace}
+  button{padding:.6rem 1.4rem;font-size:1rem;margin-top:.5rem}
+  pre{background:#f7f7f7;border:1px solid #ddd;padding:1rem;overflow:auto}
+</style>
+</head>
+<body>
+
+<h1>CSV Header ➜ metadata.json</h1>
+
+<label for="header">CSV header row (comma-separated):</label><br>
+<textarea id="header" placeholder="VIN (1-10),County,City,State,Postal Code,..."></textarea><br>
+
+<button id="generate">Generate JSON & Download</button>
+
+<h2>Preview</h2>
+<pre id="output">// Generated JSON appears here</pre>
+
+<script>
+function buildTemplate(headers) {
+  return {
+    name: "",
+    description: "",
+    fields: headers.map(h => ({
+      type: "",
+      label: h.trim(),
+      description: ""
+    })),
+    license: {
+      name: "",
+      commercial_use: null,
+      attribution: null
+    },
+    size: null
+  };
+}
+
+document.getElementById('generate').addEventListener('click', () => {
+  const raw = document.getElementById('header').value.trim();
+  if (!raw) return alert("Paste a CSV header row first!");
+
+  // Split on commas that are NOT inside double quotes
+  const headers = raw.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+
+  const jsonObj = buildTemplate(headers);
+  const jsonText = JSON.stringify(jsonObj, null, 4);
+
+  // Show preview
+  document.getElementById('output').textContent = jsonText;
+
+  // Trigger download
+  const blob = new Blob([jsonText], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement('a'), { href: url, download: 'metadata.json' });
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
