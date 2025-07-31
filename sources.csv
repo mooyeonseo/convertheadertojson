@@ -1,0 +1,215 @@
+U.S. Consumer Price Index (CPI),https://www.bls.gov/cpi/
+U.S. Unemployment Rate,https://www.bls.gov/cps/
+World Development Indicators,https://databank.worldbank.org/source/world-development-indicators
+S&P 500 Historical Prices,https://fred.stlouisfed.org/series/SP500
+Bitcoin Price History,https://www.blockchain.com/charts/market-price
+UN Comtrade Global Trade,https://comtrade.un.org/data
+Big Mac Index,https://www.economist.com/big-mac-index
+World Inequality Database,https://wid.world/data/
+Federal Reserve Economic Data (FRED),https://fred.stlouisfed.org/
+OECD Economic Outlook,https://stats.oecd.org/
+UN World Population Prospects,https://population.un.org/wpp/
+UN World Urbanization Prospects,https://population.un.org/wup/
+U.S. Census Data,https://www.census.gov/data.html
+World Happiness Report,https://worldhappiness.report/
+UNODC Homicide Data,https://dataunodc.un.org/
+UNHCR Refugee Statistics,https://www.unhcr.org/refugee-statistics/
+OECD PISA Scores,https://www.oecd.org/pisa/data/
+U.S. Baby Names,https://www.ssa.gov/oact/babynames/limits.html
+Corruption Perceptions Index,https://www.transparency.org/en/cpi
+FiveThirtyEight Data Repository,https://github.com/fivethirtyeight/data
+Johns Hopkins COVID-19,https://github.com/CSSEGISandData/COVID-19
+WHO Global Health Observatory,https://www.who.int/data/gho
+Life Expectancy - World Bank,https://data.worldbank.org/indicator/SP.DYN.LE00.IN
+COVID-19 Vaccination Data (OWID),https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations
+GLOBOCAN Cancer Stats,https://gco.iarc.fr/today/data-sources-methods
+Open Food Facts,https://world.openfoodfacts.org/data
+FDA Adverse Event Reporting System,https://open.fda.gov/data/faers/
+WHO Malaria Statistics,https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023
+WHO Health Expenditure,https://apps.who.int/nha/database
+Yelp Open Dataset,https://www.yelp.com/dataset
+Global CO₂ Emissions (OWID),https://ourworldindata.org/co2-and-ghg-emissions
+NASA GISTEMP Temperature,https://data.giss.nasa.gov/gistemp/
+NSIDC Sea Ice Index,https://nsidc.org/data/seaice_index
+Global Forest Change (UMD),https://earthenginepartners.appspot.com/science-2013-global-forest
+IRENA Renewable Capacity,https://www.irena.org/Statistics/View-Data-by-Topic/Capacity-and-Generation/Download-data
+IUCN Red List,https://www.iucnredlist.org/resources/spatial-data-download
+USGS Earthquake Catalog,https://earthquake.usgs.gov/fdsnws/event/1/
+EM-DAT Disaster Database,https://public.emdat.be/
+OpenStreetMap Planet,https://planet.openstreetmap.org/
+NASA Exoplanet Archive,https://exoplanetarchive.ipac.caltech.edu/
+ITU Internet Usage,https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx
+World Bank Mobile Subscriptions,https://data.worldbank.org/indicator/IT.CEL.SETS.P2
+Stack Overflow Developer Survey,https://insights.stackoverflow.com/survey
+Wikipedia Dumps,https://dumps.wikimedia.org/enwiki/
+Common Crawl Dataset,https://commoncrawl.org/the-data/get-started
+ImageNet,https://www.image-net.org/download
+Enron Email Corpus,https://www.cs.cmu.edu/~enron/
+USPTO Bulk Data,https://bulkdata.uspto.gov/
+GitHub Archive,https://www.gharchive.org/
+Wikidata Dumps,https://dumps.wikimedia.org/wikidatawiki/entities/
+Olympic Games History (Kaggle),https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results
+International Football Results,https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017
+NBA Historical Stats,https://www.basketball-reference.com/
+Video Game Sales,https://www.kaggle.com/datasets/gregorut/videogamesales
+IMDb Datasets,https://datasets.imdbws.com/
+Spotify Tracks Dataset,https://www.kaggle.com/datasets/yashpalw/spotify-dataset-19212020-160k-tracks
+YouTube Trending Videos,https://www.kaggle.com/datasets/datasnaek/youtube-new
+Twitch Top Streamers,https://www.kaggle.com/datasets/ramjasmaurya/twitch-top-streamers-data
+Netflix Movies & Shows,https://www.kaggle.com/datasets/shivamb/netflix-shows
+Pokémon with Stats,https://www.kaggle.com/datasets/abcsDS/pok%C3%A9mon-with-stats
+Global Crop Yields,https://www.fao.org/faostat/en/#data/QC
+USDA Food Nutrient Database,https://fdc.nal.usda.gov/download-datasets.html
+FAO Food Price Index,https://www.fao.org/worldfoodsituation/foodpricesindex/en/
+FAOSTAT,https://www.fao.org/faostat/en/#data
+Global Fisheries Catch,https://www.fao.org/fishery/statistics/en
+GBIF Occurrence Data,https://www.gbif.org/occurrence/download
+Gridded Livestock of the World,https://www.fao.org/livestock-systems/en/
+USDA Cropland Data Layer,https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php
+Wine Quality Dataset,https://archive.ics.uci.edu/ml/datasets/wine+quality
+NYC Taxi Trips,https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+US Flights On-Time Performance,https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236
+OpenFlights Routes,https://openflights.org/data.html
+Uber NYC Rides 2014,https://github.com/fivethirtyeight/uber-tlc-foil-response
+Data.gov Catalog,https://catalog.data.gov/dataset
+EU Open Data Portal,https://data.europa.eu/en
+NYC Open Data,https://opendata.cityofnewyork.us/
+UN Habitat Urban Indicators,https://data.unhabitat.org/
+WHO Road Safety Data,https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/road-traffic-injuries
+TransitFeeds GTFS,https://transitfeeds.com/
+Kaggle Datasets,https://www.kaggle.com/datasets
+Google BigQuery Public Datasets,https://cloud.google.com/bigquery/public-data
+Socrata Open Data Network,https://opendatanetwork.com/
+Wikipedia API,https://www.mediawiki.org/wiki/API:Main_page
+Wikidata Query Service,https://query.wikidata.org/
+Awesome Public Datasets List,https://github.com/awesomedata/awesome-public-datasets
+UCI Machine Learning Repository,https://archive.ics.uci.edu/ml/index.php
+Human Development Index,https://hdr.undp.org/data-center/documentation-and-downloads
+Project Gutenberg,https://www.gutenberg.org/
+NOAA GHCN Daily,https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily
+Stanford Large Movie Review Dataset,https://ai.stanford.edu/~amaas/data/sentiment/
+COCO Image Dataset,https://cocodataset.org/#download
+NHS Hospital Episode Statistics,https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics
+Eurostat Database,https://ec.europa.eu/eurostat/data/database
+NOAA Storm Events Database,https://www.ncdc.noaa.gov/stormevents/
+NASA Open Data Portal,https://data.nasa.gov/
+IPUMS USA Census Microdata,https://usa.ipums.org/usa/
+FBI Crime Data Explorer,https://cde.ucr.uic.gov/LATEST/webapp/#/
+Global Terrorism Database,https://www.start.umd.edu/data-tools/global-terrorism-database-gtd
+UN SDG Indicators Database,https://unstats.un.org/sdgs/indicators/database/
+OpenAQ Air Quality Data,https://openaq.org/
+Data.gov,https://data.gov
+Google Dataset Search,https://datasetsearch.research.google.com
+Kaggle Datasets,https://kaggle.com/datasets
+US Census Data API,https://www.census.gov/data/developers.html
+Open Government Canada,https://open.canada.ca
+NASA Open Data Portal,https://data.nasa.gov
+AWS Open Data,https://registry.opendata.aws
+UCI ML Repository,https://archive.ics.uci.edu/ml
+Papers With Code,https://paperswithcode.com/datasets
+World Bank Open Data,https://data.worldbank.org
+UN Data,https://data.un.org
+OECD Data,https://data.oecd.org
+IMF Data,https://data.imf.org
+Zenodo,https://zenodo.org
+HuggingFace Datasets,https://huggingface.co/datasets
+OpenML,https://openml.org
+ICPSR,https://www.icpsr.umich.edu
+Dataverse,https://dataverse.org
+FRED Economic Data,https://fred.stlouisfed.org
+Yahoo Finance,https://finance.yahoo.com
+Alpha Vantage,https://www.alphavantage.co
+Quandl,https://www.quandl.com
+ECB Statistics,https://sdw.ecb.europa.eu
+Twitter API,https://developer.twitter.com
+Reddit Data,https://www.reddit.com/dev/api
+GitHub Archive,https://www.gharchive.org
+Common Crawl,https://commoncrawl.org
+Google Trends,https://trends.google.com
+NIH Data Commons,https://datascience.nih.gov
+MIMIC-III,https://mimic.physionet.org
+PhysioNet,https://physionet.org
+Global Burden of Disease,http://ghdx.healthdata.org
+COVID-19 Data,https://github.com/CSSEGISandData
+NOAA Climate Data,https://www.ncdc.noaa.gov
+NASA Earth Data,https://earthdata.nasa.gov
+WorldClim,https://worldclim.org
+Carbon Monitor,https://carbonmonitor.org
+Berkeley Earth,http://berkeleyearth.org
+OpenStreetMap,https://www.openstreetmap.org
+NYC Open Data,https://opendata.cityofnewyork.us
+Uber Movement,https://movement.uber.com
+Citibike Data,https://www.citibikenyc.com/system-data
+Common Core of Data,https://nces.ed.gov/ccd
+PISA Data,https://www.oecd.org/pisa/data
+College Scorecard,https://collegescorecard.ed.gov
+EdStats,https://datatopics.worldbank.org/education
+UNESCO UIS,http://uis.unesco.org
+Internet Archive,https://archive.org
+Project Gutenberg,https://www.gutenberg.org
+MovieLens,https://grouplens.org/datasets/movielens
+Spotify Playlists,https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge
+Getty Vocabularies,http://vocab.getty.edu
+Domain Name Stats,https://research.domaintools.com
+Internet Live Stats,https://www.internetlivestats.com
+Mozilla Data,https://data.mozilla.org
+Android Malware,https://www.sec.cs.tu-bs.de/~danarp/drebin
+Sports Reference,https://www.sports-reference.com
+NBA Stats,https://stats.nba.com
+FIFA World Cup,https://github.com/openfootball
+Olympic Games,https://www.olympic.org
+Strava Heatmap,https://www.strava.com/heatmap
+SEC EDGAR,https://www.sec.gov/edgar
+Bureau Labor Stats,https://www.bls.gov
+USPTO Patents,https://www.uspto.gov
+Crunchbase,https://www.crunchbase.com
+Fortune 500,https://fortune.com/global500
+Google Books Ngrams,https://books.google.com/ngrams
+Wikipedia Dumps,https://dumps.wikimedia.org
+NLTK Corpora,https://www.nltk.org/nltk_data
+Stanford CoreNLP,https://stanfordnlp.github.io/CoreNLP
+OpenSubtitles,http://opus.nlpl.eu/OpenSubtitles.php
+ImageNet,http://www.image-net.org
+COCO Dataset,http://cocodataset.org
+Open Images,https://storage.googleapis.com/openimages/web/index.html
+CIFAR-10/100,https://www.cs.toronto.edu/~kriz/cifar.html
+Places365,http://places2.csail.mit.edu
+LibriSpeech,http://www.openslr.org/12
+VoxCeleb,http://www.robots.ox.ac.uk/~vgg/data/voxceleb
+Common Voice,https://commonvoice.mozilla.org
+AudioSet,https://research.google.com/audioset
+Million Song Dataset,http://millionsongdataset.com
+Protein Data Bank,https://www.rcsb.org
+GenBank,https://www.ncbi.nlm.nih.gov/genbank
+ChEMBL,https://www.ebi.ac.uk/chembl
+Materials Project,https://materialsproject.org
+Sloan Sky Survey,https://www.sdss.org
+USGS Earthquakes,https://earthquake.usgs.gov
+Zillow Real Estate,https://www.zillow.com/research/data
+Consumer Spending,https://www.bls.gov/cex
+Global Terrorism,https://www.start.umd.edu/gtd
+FAO Agriculture,http://www.fao.org/faostat
+IMDB,https://www.imdb.com/interfaces
+Global Forest Watch,https://www.globalforestwatch.org
+Digital Public Library,https://dp.la
+European Space Agency,https://earth.esa.int
+Bitcoin Historical,https://www.coindesk.com/price/bitcoin
+Stock Market Dataset,https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset
+Energy Data,https://www.eia.gov/opendata
+Transport Data,https://www.bts.gov/browse-statistical-products-and-data
+Population Census,https://www.census.gov/programs-surveys/popest.html
+Crime Statistics,https://ucr.fbi.gov/crime-in-the-u.s
+Health Insurance,https://www.cms.gov/Research-Statistics-Data-and-Systems
+Tax Data,https://www.irs.gov/statistics
+Trade Statistics,https://www.trade.gov/data-visualization
+Migration Data,https://www.unhcr.org/refugee-statistics
+Unemployment Data,https://www.bls.gov/data
+Housing Data,https://www.census.gov/topics/housing.html
+Food Prices,http://www.fao.org/giews/food-prices
+Commodity Prices,https://www.indexmundi.com/commodities
+Exchange Rates,https://www.xe.com/currencydata
+Interest Rates,https://www.federalreserve.gov/data.htm
+GDP Data,https://www.bea.gov/data/gdp
+Inflation Data,https://www.bls.gov/cpi
+Retail Sales,https://www.census.gov/retail/index.html
+Industrial Production,https://www.federalreserve.gov/releases/g17
