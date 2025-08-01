@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSV Header ➜ metadata.json</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../index.css" />
+</head>
+<body>
+<div class="container">
+    <h1>CSV Header ➜ metadata.json</h1>
+
+    <div class="form-group">
+        <label for="header">CSV header row (comma-separated):</label>
+        <textarea id="header" placeholder="VIN (1-10),County,City,State,Postal Code,..."></textarea>
+    </div>
+
+    <button id="generate" class="btn btn-success">Generate JSON & Copy to Clipboard</button>
+
+    <div class="info mt-3" id="copy-status" style="display: none;">
+        JSON copied to clipboard!
+    </div>
+
+    <h2>Preview</h2>
+    <div id="output" class="json-output">// Generated JSON appears here</div>
+</div>
+
+<script>
+function buildTemplate(headers) {
+  return {
+    name: "",
+    description: "",
+    fields: headers.map(h => ({
+      type: "",
+      label: h.trim(),
+      description: ""
+    })),
+    license: {
+      name: "",
+      commercial_use: null,
+      attribution: null
+    },
+    size: null
+  };
+}
+
+document.getElementById('generate').addEventListener('click', async () => {
+  const raw = document.getElementById('header').value.trim();
+  if (!raw) {
+    alert("Paste a CSV header row first!");
+    return;
+  }
+
+  // Split on commas that are NOT inside double quotes
+  const headers = raw.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+
+  const jsonObj = buildTemplate(headers);
+  const jsonText = JSON.stringify(jsonObj, null, 4);
+
+  // Show preview
+  document.getElementById('output').textContent = jsonText;
+
+  // Copy to clipboard
+  try {
+    await navigator.clipboard.writeText(jsonText);
+    
+    // Show success message
+    const statusEl = document.getElementById('copy-status');
+    statusEl.style.display = 'block';
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+      statusEl.style.display = 'none';
+    }, 3000);
+  } catch (err) {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = jsonText;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      
+      // Show success message
+      const statusEl = document.getElementById('copy-status');
+      statusEl.style.display = 'block';
+      
+      // Hide message after 3 seconds
+      setTimeout(() => {
+        statusEl.style.display = 'none';
+      }, 3000);
+    } catch (err) {
+      alert('Unable to copy to clipboard. Please copy manually from the preview.');
+    }
+    
+    document.body.removeChild(textArea);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,67 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>CSV Header ➜ metadata.json</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  body{font-family:Arial,sans-serif;margin:2rem;max-width:800px}
-  textarea{width:100%;min-height:6rem;font-family:monospace}
-  button{padding:.6rem 1.4rem;font-size:1rem;margin-top:.5rem}
-  pre{background:#f7f7f7;border:1px solid #ddd;padding:1rem;overflow:auto}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dataset Collection & Metadata Workflow</title>
+  <link rel="stylesheet" href="index.css" />
 </head>
+
 <body>
+  <div class="container">
+    <h1>Dataset Collection & Metadata Workflow</h1>
+    
+    <ol>
+      <li>
+        <h2>Get Data Sources File</h2>
+        <p>Obtain the file containing links to possible data sources.</p>
+        <details>
+          <summary>Click to view curated public-data sources <a href="/sources.csv" target="_blank" rel="noopener">Download</a></summary>
+          <ul class="details-sources">
+            <li><a href="https://www.bls.gov/cpi/" target="_blank" rel="noopener">U.S. Consumer Price Index (CPI)</a></li>
+            <li><a href="https://www.bls.gov/cps/" target="_blank" rel="noopener">U.S. Unemployment Rate</a></li>
+            <li><a href="https://databank.worldbank.org/source/world-development-indicators" target="_blank" rel="noopener">World Development Indicators</a></li>
+            <li><a href="https://fred.stlouisfed.org/series/SP500" target="_blank" rel="noopener">S&amp;P 500 Historical Prices</a></li>
+            <li><a href="https://www.blockchain.com/charts/market-price" target="_blank" rel="noopener">Bitcoin Price History</a></li>
+            <li><a href="https://comtrade.un.org/data" target="_blank" rel="noopener">UN Comtrade Global Trade</a></li>
+            <li><a href="https://www.economist.com/big-mac-index" target="_blank" rel="noopener">Big Mac Index</a></li>
+            <li><a href="https://wid.world/data/" target="_blank" rel="noopener">World Inequality Database</a></li>
+            <li><a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">Federal Reserve Economic Data (FRED)</a></li>
+            <li><a href="https://stats.oecd.org/" target="_blank" rel="noopener">OECD Economic Outlook</a></li>
+            <li><a href="https://population.un.org/wpp/" target="_blank" rel="noopener">UN World Population Prospects</a></li>
+            <li><a href="https://population.un.org/wup/" target="_blank" rel="noopener">UN World Urbanization Prospects</a></li>
+            <li><a href="https://www.census.gov/data.html" target="_blank" rel="noopener">U.S. Census Data</a></li>
+            <li><a href="https://worldhappiness.report/" target="_blank" rel="noopener">World Happiness Report</a></li>
+            <li><a href="https://dataunodc.un.org/" target="_blank" rel="noopener">UNODC Homicide Data</a></li>
+            <li><a href="https://www.unhcr.org/refugee-statistics/" target="_blank" rel="noopener">UNHCR Refugee Statistics</a></li>
+            <li><a href="https://www.oecd.org/pisa/data/" target="_blank" rel="noopener">OECD PISA Scores</a></li>
+            <li><a href="https://www.ssa.gov/oact/babynames/limits.html" target="_blank" rel="noopener">U.S. Baby Names</a></li>
+            <li><a href="https://www.transparency.org/en/cpi" target="_blank" rel="noopener">Corruption Perceptions Index</a></li>
+            <li><a href="https://github.com/fivethirtyeight/data" target="_blank" rel="noopener">FiveThirtyEight Data Repository</a></li>
+            <li><a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener">Johns Hopkins COVID-19</a></li>
+            <li><a href="https://www.who.int/data/gho" target="_blank" rel="noopener">WHO Global Health Observatory</a></li>
+            <li><a href="https://data.worldbank.org/indicator/SP.DYN.LE00.IN" target="_blank" rel="noopener">Life Expectancy - World Bank</a></li>
+            <li><a href="https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations" target="_blank" rel="noopener">COVID-19 Vaccination Data (OWID)</a></li>
+            <li><a href="https://gco.iarc.fr/today/data-sources-methods" target="_blank" rel="noopener">GLOBOCAN Cancer Stats</a></li>
+            <li><a href="https://world.openfoodfacts.org/data" target="_blank" rel="noopener">Open Food Facts</a></li>
+            <li><a href="https://open.fda.gov/data/faers/" target="_blank" rel="noopener">FDA Adverse Event Reporting System</a></li>
+            <li><a href="https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023" target="_blank" rel="noopener">WHO Malaria Statistics</a></li>
+            <li><a href="https://apps.who.int/nha/database" target="_blank" rel="noopener">WHO Health Expenditure</a></li>
+            <li><a href="https://www.yelp.com/dataset" target="_blank" rel="noopener">Yelp Open Dataset</a></li>
+            <!-- Additional sources continue here... -->
+          </ul>
+        </details>
+      </li>
 
-<h1>CSV Header ➜ metadata.json</h1>
+      <li>
+        <h2>Test Link Accessibility</h2>
+        <p>Copy and paste the URL into your browser's address bar.</p>
+        <div class="warning">
+          <strong>If you encounter:</strong>
+          <ul>
+            <li>Error page (404, 403, etc.)</li>
+            <li>Page showing content is missing or moved</li>
+            <li>Access denied or login required</li>
+          </ul>
+          <strong>→ Move on to the next link</strong>
+        </div>
+      </li>
 
-<label for="header">CSV header row (comma-separated):</label><br>
-<textarea id="header" placeholder="VIN (1-10),County,City,State,Postal Code,..."></textarea><br>
+      <li>
+        <h2>Explore for CSV Data</h2>
+        <p>If the page loads successfully, look for:</p>
+        <ul>
+          <li>Direct CSV download links</li>
+          <li>Data export options with CSV format</li>
+          <li>Bulk data download sections</li>
+          <li>API endpoints that provide CSV output</li>
+        </ul>
+        <div class="note">
+          <strong>Goal:</strong> Find data in CSV (comma-separated values) format
+        </div>
+      </li>
 
-<button id="generate">Generate JSON & Download</button>
+      <li>
+        <h2>Check Licensing Requirements</h2>
+        <p>Look for licensing information on the site:</p>
+        <ul>
+          <li>Check footer links for "Terms," "License," or "Legal"</li>
+          <li>Look for Creative Commons badges</li>
+          <li>Review data documentation for usage rights</li>
+          <li>Check "About" or "FAQ" sections</li>
+        </ul>
+      </li>
 
-<h2>Preview</h2>
-<pre id="output">// Generated JSON appears here</pre>
+      <li>
+        <h2>Verify Free Commercial Use</h2>
+        <div class="success">
+          <strong>✓ Acceptable licenses include:</strong>
+          <ul>
+            <li>Public Domain / CC0</li>
+            <li>CC BY (Attribution)</li>
+            <li>CC BY-SA (Attribution-ShareAlike)</li>
+            <li>Open Government License</li>
+            <li>MIT, Apache, or similar open licenses</li>
+          </ul>
+        </div>
+        <div class="warning">
+          <strong>✗ Skip if license includes:</strong>
+          <ul>
+            <li>Non-commercial restrictions (CC BY-NC)</li>
+            <li>No derivatives (ND) clauses</li>
+            <li>Paid access requirements</li>
+          </ul>
+        </div>
+        <div class="note">
+          <strong>Note:</strong> If no licensing information is found, proceed but document this in the metadata.
+        </div>
+      </li>
 
-<script>
-function buildTemplate(headers) {
-  return {
-    name: "",
-    description: "",
-    fields: headers.map(h => ({
-      type: "",
-      label: h.trim(),
-      description: ""
-    })),
-    license: {
-      name: "",
-      commercial_use: null,
-      attribution: null
-    },
-    size: null
-  };
-}
+      <li>
+        <h2>Download the CSV File</h2>
+        <p>Save the CSV file with a descriptive filename:</p>
+        <ul>
+          <li>Use lowercase with underscores: <code>world_population_2023.csv</code></li>
+          <li>Include relevant date/version if applicable</li>
+          <li>Avoid spaces and special characters</li>
+        </ul>
+      </li>
 
-document.getElementById('generate').addEventListener('click', () => {
-  const raw = document.getElementById('header').value.trim();
-  if (!raw) return alert("Paste a CSV header row first!");
+      <li>
+        <h2>Create Metadata JSON</h2>
+        <p>Create a JSON file with the following structure:</p>
+        <p><strong>Tool:</strong> Use <a href="json/generate.html" target="_blank" rel="noopener">JSON Generator</a> to help create the metadata file</p>
+        <pre><code>{
+  "name": "Dataset Name",
+  "description": "Comprehensive description including purpose, temporal range, and spatial coverage",
+  "size": 1234,
+  "fields": [
+    {
+      "name": "field_name_from_csv",
+      "description": "What this field represents",
+      "type": "string|number|date"
+    }
+  ]
+}</code></pre>
+        <p><strong>Field types:</strong> 
+          <span class="field-types">date</span> 
+          <span class="field-types">string</span> 
+          <span class="field-types">number</span>
+        </p>
+        <div class="note">
+          <strong>Tips:</strong>
+          <ul>
+            <li><code>name</code>: Clear, human-readable dataset title</li>
+            <li><code>description</code>: Include what the data covers, time period, geographic scope</li>
+            <li><code>size</code>: Total number of data rows (excluding header)</li>
+            <li><code>fields</code>: One entry per CSV column, in order</li>
+          </ul>
+        </div>
+      </li>
 
-  // Split on commas that are NOT inside double quotes
-  const headers = raw.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+      <li>
+        <h2>Save Files</h2>
+        <p>Ensure both files are saved with matching names:</p>
+        <ul>
+          <li><code>dataset_name.csv</code> - The data file</li>
+          <li><code>dataset_name.json</code> - The metadata file</li>
+        </ul>
+        <p>Example: <code>big_mac_index.csv</code> and <code>big_mac_index.json</code></p>
+      </li>
 
-  const jsonObj = buildTemplate(headers);
-  const jsonText = JSON.stringify(jsonObj, null, 4);
+      <li>
+        <h2>Validate Files</h2>
+        <p>Before uploading, validate both files to ensure they're properly formatted:</p>
+        <ul>
+          <li><strong>CSV Validation:</strong> Use <a href="https://toolkitbay.com/tkb/tool/csv-validator" target="_blank" rel="noopener">CSV Validator</a> to check your CSV file format</li>
+          <li><strong>JSON Validation:</strong> Use <a href="https://jsonlint.com/" target="_blank" rel="noopener">JSONLint</a> to validate your JSON metadata</li>
+        </ul>
+        <div class="warning">
+          <strong>If validation fails:</strong> Fix the errors or choose another dataset
+        </div>
+      </li>
 
-  // Show preview
-  document.getElementById('output').textContent = jsonText;
-
-  // Trigger download
-  const blob = new Blob([jsonText], { type: "application/json" });
-  const url  = URL.createObjectURL(blob);
-  const a    = Object.assign(document.createElement('a'), { href: url, download: 'metadata.json' });
-  a.click();
-  URL.revokeObjectURL(url);
-});
-</script>
+      <li>
+        <h2>Upload to FTP2</h2>
+        <p>Upload both files to the appropriate folder in FTP2:</p>
+        <ul>
+          <li>Connect to FTP2 server</li>
+          <li>Navigate to the correct destination folder</li>
+          <li>Upload both the CSV and JSON files</li>
+          <li>Verify successful upload and file integrity</li>
+        </ul>
+        <div class="success">
+          <strong>✓ Completion checklist:</strong>
+          <ul>
+            <li>CSV file downloaded and saved</li>
+            <li>JSON metadata created with all required fields</li>
+            <li>License verified for free commercial use (or noted as unavailable)</li>
+            <li>Files validated (CSV and JSON)</li>
+            <li>Both files uploaded to FTP2</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
 </body>
 </html>
