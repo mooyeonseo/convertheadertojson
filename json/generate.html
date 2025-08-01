@@ -9,95 +9,306 @@
 <body>
 <div class="container">
     <h1>CSV Header ➜ metadata.json</h1>
+    <p class="subtitle">Transform your CSV headers into a structured metadata template</p>
 
-    <div class="form-group">
-        <label for="header">CSV header row (comma-separated):</label>
-        <textarea id="header" placeholder="VIN (1-10),County,City,State,Postal Code,..."></textarea>
+    <!-- Side by side input options -->
+    <div class="input-section">
+        <!-- Option 1: Drag and Drop -->
+        <div class="input-option">
+            <div class="input-option-title">Option 1: Upload CSV File</div>
+            <div class="drop-zone" id="drop-zone">
+                <div class="drop-zone-icon">📁</div>
+                <div class="drop-zone-text">Drag and drop a CSV file</div>
+                <div class="drop-zone-hint">or click to browse</div>
+            </div>
+            <!-- File info display -->
+            <div class="file-info" id="file-info">
+                <span class="file-info-icon">✓</span>
+                <span class="file-info-text" id="file-name"></span>
+                <button class="file-info-close" id="clear-file">&times;</button>
+            </div>
+            <p> It copies JSON content immediately upon a new file uploaded</p>
+        </div>
+        
+        <!-- OR divider -->
+        <div class="or-divider">
+            <span class="or-text">OR</span>
+        </div>
+        
+        <!-- Option 2: Manual Input -->
+        <div class="input-option">
+            <div class="input-option-title">Option 2: Paste Header Row</div>
+            <div class="textarea-container">
+                <textarea id="header" placeholder="COLUMN1, COLUMN2, COLUMN3, COLUMN4, ..."></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden file input -->
+    <input type="file" id="file-input" accept=".csv,text/csv">
+
+    <!-- Generate button -->
+    <div class="action-section">
+        <button id="generate" class="btn btn-success generate">
+            Generate
+        </button>
+        
+        <div class="info success" id="copy-status" style="display: none;">
+            ✓ JSON copied to clipboard!
+        </div>
     </div>
 
-    <button id="generate" class="btn btn-success">Generate JSON & Copy to Clipboard</button>
-
-    <div class="info mt-3" id="copy-status" style="display: none;">
-        JSON copied to clipboard!
+    <div class="preview-header">
+        <h2 class="preview-title">Preview</h2>
+        <button id="copy-preview" class="btn btn-copy" style="display: none;">
+            <span>📋</span>
+            Copy JSON
+        </button>
     </div>
-
-    <h2>Preview</h2>
     <div id="output" class="json-output">// Generated JSON appears here</div>
 </div>
 
 <script>
-function buildTemplate(headers) {
-  return {
-    name: "",
-    description: "",
-    fields: headers.map(h => ({
-      type: "",
-      label: h.trim(),
-      description: ""
-    })),
-    license: {
-      name: "",
-      commercial_use: null,
-      attribution: null
-    },
-    size: null
-  };
+// Parse CSV header considering quotes
+function parseCSVHeader(text) {
+    // Remove BOM if present
+    text = text.replace(/^\uFEFF/, '');
+    
+    // Split on commas that are NOT inside double quotes
+    const headers = text.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+    
+    // Clean up headers: remove quotes and trim
+    return headers.map(h => {
+        h = h.trim();
+        // Remove surrounding quotes if present
+        if (h.startsWith('"') && h.endsWith('"')) {
+            h = h.slice(1, -1);
+        }
+        return h;
+    });
 }
 
-document.getElementById('generate').addEventListener('click', async () => {
-  const raw = document.getElementById('header').value.trim();
-  if (!raw) {
-    alert("Paste a CSV header row first!");
-    return;
-  }
+function buildTemplate(headers) {
+    return {
+        name: "",
+        description: "",
+        fields: headers.map(h => ({
+            type: "",
+            label: h,
+            description: ""
+        })),
+        license: {
+            name: "",
+            commercial_use: null,
+            attribution: null
+        },
+        size: null
+    };
+}
 
-  // Split on commas that are NOT inside double quotes
-  const headers = raw.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+// Generate and display JSON
+async function generateJSON() {
+    const raw = headerTextarea.value.trim();
+    if (!raw) {
+        alert("Please provide a CSV header row using either option!");
+        return;
+    }
 
-  const jsonObj = buildTemplate(headers);
-  const jsonText = JSON.stringify(jsonObj, null, 4);
-
-  // Show preview
-  document.getElementById('output').textContent = jsonText;
-
-  // Copy to clipboard
-  try {
-    await navigator.clipboard.writeText(jsonText);
+    const headers = parseCSVHeader(raw);
+    const jsonObj = buildTemplate(headers);
+    const jsonText = JSON.stringify(jsonObj, null, 4);
     
-    // Show success message
-    const statusEl = document.getElementById('copy-status');
-    statusEl.style.display = 'block';
-    
-    // Hide message after 3 seconds
-    setTimeout(() => {
-      statusEl.style.display = 'none';
-    }, 3000);
-  } catch (err) {
-    // Fallback for older browsers
-    const textArea = document.createElement('textarea');
-    textArea.value = jsonText;
-    textArea.style.position = 'fixed';
-    textArea.style.left = '-999999px';
-    document.body.appendChild(textArea);
-    textArea.select();
-    
+    // Store current JSON for copy button
+    currentJSON = jsonText;
+    copyPreviewBtn.style.display = 'inline-flex';
+
+    // Show preview
+    document.getElementById('output').textContent = jsonText;
+
+    // Copy to clipboard
     try {
-      document.execCommand('copy');
-      
-      // Show success message
-      const statusEl = document.getElementById('copy-status');
-      statusEl.style.display = 'block';
-      
-      // Hide message after 3 seconds
-      setTimeout(() => {
-        statusEl.style.display = 'none';
-      }, 3000);
+        await navigator.clipboard.writeText(jsonText);
+        
+        // Show success message
+        const statusEl = document.getElementById('copy-status');
+        statusEl.style.display = 'inline-block';
+        
+        // Hide message after 3 seconds
+        setTimeout(() => {
+            statusEl.style.display = 'none';
+        }, 3000);
     } catch (err) {
-      alert('Unable to copy to clipboard. Please copy manually from the preview.');
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = jsonText;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            
+            // Show success message
+            const statusEl = document.getElementById('copy-status');
+            statusEl.style.display = 'inline-block';
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 3000);
+        } catch (err) {
+            alert('Unable to copy to clipboard. Please copy manually from the preview.');
+        }
+        
+        document.body.removeChild(textArea);
+    }
+}
+
+// File handling
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+const fileInfo = document.getElementById('file-info');
+const fileName = document.getElementById('file-name');
+const clearFile = document.getElementById('clear-file');
+const headerTextarea = document.getElementById('header');
+
+// Click to browse
+dropZone.addEventListener('click', () => {
+    fileInput.click();
+});
+
+// Drag and drop events
+dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-over');
+});
+
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        handleFile(files[0]);
+    }
+});
+
+// File input change
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+    }
+});
+
+// Clear file
+clearFile.addEventListener('click', () => {
+    fileInput.value = '';
+    fileInfo.style.display = 'none';
+    headerTextarea.value = '';
+});
+
+// Handle file
+function handleFile(file) {
+    // Check if it's a CSV file
+    if (!file.name.endsWith('.csv') && file.type !== 'text/csv') {
+        alert('Please upload a CSV file');
+        return;
     }
     
-    document.body.removeChild(textArea);
-  }
+    // Show file info
+    fileName.textContent = file.name;
+    fileInfo.style.display = 'flex';
+    
+    // Read file
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const content = e.target.result;
+        const lines = content.split(/\r?\n/);
+        
+        if (lines.length > 0) {
+            // Get first non-empty line as header
+            const headerLine = lines.find(line => line.trim() !== '');
+            if (headerLine) {
+                headerTextarea.value = headerLine.trim();
+                
+                // Visual feedback that content was loaded
+                headerTextarea.style.borderColor = '#48bb78';
+                headerTextarea.style.backgroundColor = '#f0fff4';
+                
+                setTimeout(() => {
+                    headerTextarea.style.borderColor = '';
+                    headerTextarea.style.backgroundColor = '';
+                }, 2000);
+                
+                // Automatically generate JSON after file upload
+                generateJSON();
+            } else {
+                alert('No header row found in the CSV file');
+            }
+        }
+    };
+    
+    reader.onerror = function() {
+        alert('Error reading file');
+    };
+    
+    reader.readAsText(file);
+}
+
+// Generate JSON
+let currentJSON = null;
+const copyPreviewBtn = document.getElementById('copy-preview');
+
+document.getElementById('generate').addEventListener('click', generateJSON);
+
+// Copy preview button
+copyPreviewBtn.addEventListener('click', async () => {
+    if (!currentJSON) return;
+    
+    try {
+        await navigator.clipboard.writeText(currentJSON);
+        
+        // Change button text temporarily
+        const originalHTML = copyPreviewBtn.innerHTML;
+        copyPreviewBtn.innerHTML = '<span>✓</span> Copied!';
+        copyPreviewBtn.disabled = true;
+        
+        setTimeout(() => {
+            copyPreviewBtn.innerHTML = originalHTML;
+            copyPreviewBtn.disabled = false;
+        }, 2000);
+    } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = currentJSON;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            
+            // Change button text temporarily
+            const originalHTML = copyPreviewBtn.innerHTML;
+            copyPreviewBtn.innerHTML = '<span>✓</span> Copied!';
+            copyPreviewBtn.disabled = true;
+            
+            setTimeout(() => {
+                copyPreviewBtn.innerHTML = originalHTML;
+                copyPreviewBtn.disabled = false;
+            }, 2000);
+        } catch (err) {
+            alert('Unable to copy to clipboard. Please copy manually from the preview.');
+        }
+        
+        document.body.removeChild(textArea);
+    }
 });
 </script>
 </body>
