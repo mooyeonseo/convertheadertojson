@@ -43,6 +43,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Optional: Company selection -->
+    <div class="meta-section" style="margin-top: 1rem;">
+        <label for="company-select" style="display:block; font-weight:600; margin-bottom: .25rem;">Company (optional)</label>
+        <select id="company-select" class="select" style="width:100%; max-width:480px;">
+            <option value="">— None —</option>
+            <option value="Greenpeace International">Greenpeace International</option>
+            <option value="World Wildlife Fund">World Wildlife Fund</option>
+            <option value="Amnesty International">Amnesty International</option>
+            <option value="Doctors Without Borders">Doctors Without Borders</option>
+            <option value="charity: water">charity: water</option>
+            <option value="UNHCR">UNHCR</option>
+            <option value="Transparency International">Transparency International</option>
+            <option value="Khan Academy">Khan Academy</option>
+            <option value="WaterAid">WaterAid</option>
+            <option value="Electronic Frontier Foundation">Electronic Frontier Foundation</option>
+        </select>
+        <div class="hint" style="font-size:.9rem; color:#666; margin-top:.25rem;">If you choose a company, it will be included as a string in the JSON. We’ll remember your last choice on this browser.</div>
+    </div>
     
     <!-- Hidden file input -->
     <input type="file" id="file-input" accept=".csv,text/csv">
@@ -88,8 +107,9 @@ function parseCSVHeader(text) {
     });
 }
 
-function buildTemplate(headers) {
-    return {
+// Build the base template; include company only if provided (non-empty string)
+function buildTemplate(headers, company) {
+    const obj = {
         name: "",
         description: "",
         fields: headers.map(h => ({
@@ -104,6 +124,12 @@ function buildTemplate(headers) {
         },
         size: null
     };
+
+    if (company) {
+        obj.company = company; // optional string field
+    }
+
+    return obj;
 }
 
 // Generate and display JSON
@@ -115,7 +141,8 @@ async function generateJSON() {
     }
 
     const headers = parseCSVHeader(raw);
-    const jsonObj = buildTemplate(headers);
+    const selectedCompany = (companySelect.value || '').trim();
+    const jsonObj = buildTemplate(headers, selectedCompany || null);
     const jsonText = JSON.stringify(jsonObj, null, 4);
     
     // Store current JSON for copy button
@@ -172,6 +199,33 @@ const fileInfo = document.getElementById('file-info');
 const fileName = document.getElementById('file-name');
 const clearFile = document.getElementById('clear-file');
 const headerTextarea = document.getElementById('header');
+const companySelect = document.getElementById('company-select');
+
+// localStorage key for company persistence
+const COMPANY_STORAGE_KEY = 'selectedCompany';
+
+// Initialize company select from localStorage (default empty if none)
+(function initCompanyFromStorage() {
+    try {
+        const saved = localStorage.getItem(COMPANY_STORAGE_KEY);
+        if (saved !== null) {
+            companySelect.value = saved;
+        } else {
+            companySelect.value = '';
+        }
+    } catch (e) {
+        // If localStorage is unavailable, silently ignore
+    }
+})();
+
+// Persist company selection on change
+companySelect.addEventListener('change', () => {
+    try {
+        localStorage.setItem(COMPANY_STORAGE_KEY, companySelect.value);
+    } catch (e) {
+        // Ignore storage errors
+    }
+});
 
 // Click to browse
 dropZone.addEventListener('click', () => {
@@ -275,7 +329,7 @@ copyPreviewBtn.addEventListener('click', async () => {
         
         // Change button text temporarily
         const originalHTML = copyPreviewBtn.innerHTML;
-        copyPreviewBtn.innerHTML = '<span>✓</span> Copied!';
+        copyPreviewBtn.innerHTML = '<span>\u2713</span> Copied!';
         copyPreviewBtn.disabled = true;
         
         setTimeout(() => {
@@ -296,7 +350,7 @@ copyPreviewBtn.addEventListener('click', async () => {
             
             // Change button text temporarily
             const originalHTML = copyPreviewBtn.innerHTML;
-            copyPreviewBtn.innerHTML = '<span>✓</span> Copied!';
+            copyPreviewBtn.innerHTML = '<span>\u2713</span> Copied!';
             copyPreviewBtn.disabled = true;
             
             setTimeout(() => {
